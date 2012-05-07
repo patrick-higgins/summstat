@@ -61,6 +61,7 @@ func (s *Stats) AddSample(val Sample) {
 		s.min = val
 	}
 	if len(s.bins) > 0 {
+		// TODO: use faster lookup method for large bin counts
 		for bin, binVal := range s.bins {
 			if val <= binVal {
 				s.binCounts[bin]++

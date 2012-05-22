@@ -65,6 +65,7 @@ func (s *Stats) AddSample(val Sample) {
 		for bin, binVal := range s.bins {
 			if val <= binVal {
 				s.binCounts[bin]++
+				break
 			}
 		}
 	} else {
@@ -194,6 +195,7 @@ func (s *Stats) CreateBins(nbins int, low, high Sample) {
 	}
 	spread := high - low
 	s.bins = make([]Sample, nbins)
+	s.binCounts = make([]int, nbins)
 	for i := 0; i < nbins-1; i++ {
 		s.bins[i] = Sample(i)*spread/Sample(nbins-2) + low
 	}

@@ -7,6 +7,7 @@ package summstat
 import (
 	"math"
 	"sort"
+	"time"
 )
 
 // The type of samples we track statistics for
@@ -72,6 +73,11 @@ func (s *Stats) AddSample(val Sample) {
 		s.samples = append(s.samples, val)
 		s.sorted = false
 	}
+}
+
+// AddSampleSince adds the time duration since time t as a sample.
+func (s *Stats) AddSampleSince(t time.Time) {
+	s.AddSample(Sample(time.Since(t)))
 }
 
 // Count returns the number of samples added.

@@ -228,3 +228,8 @@ func (s Stats) Bin(i int) (count int, low, high Sample) {
 	}
 	return
 }
+
+// Returns the number of bins
+func (s Stats) NBins() int {
+	return len(s.bins)
+}

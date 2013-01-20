@@ -80,6 +80,13 @@ func (s *Stats) AddSampleSince(t time.Time) {
 	s.AddSample(Sample(time.Since(t)))
 }
 
+// AddStats adds all the samples from stats.
+func (s *Stats) AddStats(stats *Stats) {
+	for _, val := range stats.samples {
+		s.AddSample(val)
+	}
+}
+
 // Count returns the number of samples added.
 func (s Stats) Count() int {
 	return s.count
